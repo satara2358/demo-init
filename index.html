@@ -44,16 +44,46 @@
         // maxZoom: 16,
       }));
 
-      const popup = new mapboxgl.Popup({ offset:25}).setText("Esta es mi casa")
-      
-      // add a marker to the map my home
-      new mapboxgl.Marker({
-        color: '#57fa7d',
-        scale: 0.6
+      const sitios = [
+        {
+          name: "Casa",
+          color: "#f85149",
+          lngLat: [-77.283837,1.214842]
+        },
+        {
+          name: "RumiPamba",
+          color: "#cca700",
+          lngLat: [-77.281415,1.216642]
+        },
+        {
+          name: "Universidad",
+          color: "#da70d6",
+          lngLat: [-77.279023,1.217929]
+        }
+      ]
+
+      sitios.forEach(({name, lngLat, color}) => {
+        const popup = new mapboxgl.Popup({ offset:25}).setText(name)
+
+        new mapboxgl.Marker({
+          color:color,
+          scale: 0.6
+        })
+          .setLngLat(lngLat)
+          .setPopup(popup)  
+          .addTo(map);
       })
-        .setLngLat([-77.283837,1.214842])
-        .setPopup(popup)
-        .addTo(map);
+
+      // const popup = new mapboxgl.Popup({ offset:25}).setText("Esta es mi casa")
+      
+      // // add a marker to the map my home
+      // new mapboxgl.Marker({
+      //   color: '#57fa7d',
+      //   scale: 0.6
+      // })
+      //   .setLngLat([-77.283837,1.214842])
+      //   .setPopup(popup)
+      //   .addTo(map);
 
       map.on("style.load", () => {
         // set the light preset to be in dusk mode.
