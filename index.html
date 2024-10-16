@@ -47,7 +47,10 @@
       const popup = new mapboxgl.Popup({ offset:25}).setText("Esta es mi casa")
       
       // add a marker to the map my home
-      new mapboxgl.Marker()
+      new mapboxgl.Marker({
+        color: '#57fa7d',
+        scale: 0.6
+      })
         .setLngLat([-77.283837,1.214842])
         .setPopup(popup)
         .addTo(map);

@@ -4,4 +4,5 @@
          || cambiar estilo de mapa
 -> agregar marcador || https://docs.mapbox.com/mapbox-gl-js/example/add-a-marker/ 
 -> add popup || https://docs.mapbox.com/mapbox-gl-js/example/set-popup/
+-> Agregar Color desde || https://docs.mapbox.com/mapbox-gl-js/api/markers/
 -> 
