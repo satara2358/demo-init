@@ -32,17 +32,22 @@
       // ADD YOUR ACCESS TOKEN FROM
       // https://account.mapbox.com
       mapboxgl.accessToken =
-        "El token";
+        "pk.eyJ1Ijoic2F0YXJhMjM1OCIsImEiOiJjbTJiMnEwZTkwMTJnMmtvZjRkamgxdnVvIn0.ImPzr4R2dvBBLe9dZzHw7Q_154";
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         center: [-77.283848,1.214840],
         zoom: 15.27,
         pitch: 42,
         bearing: -50,
-        style: "mapbox://styles/mapbox/standard",
-        minZoom: 15,
-        maxZoom: 16,
+        style: "mapbox://styles/mapbox/dark-v11",
+        // minZoom: 15,
+        // maxZoom: 16,
       }));
+      
+      // add a marker to the map my home
+      new mapboxgl.Marker()
+        .setLngLat([-77.283837,1.214842])
+        .addTo(map);
 
       map.on("style.load", () => {
         // set the light preset to be in dusk mode.

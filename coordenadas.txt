@@ -1,0 +1,5 @@
+-> http://bboxfinder.com/#0.000000,0.000000,0.000000,0.000000 
+-> desde || https://docs.mapbox.com/mapbox-gl-js/guides/styles/ 
+            https://docs.mapbox.com/api/maps/styles/  
+         || cambiar estilo de mapa
+-> 
