@@ -2,4 +2,6 @@
 -> desde || https://docs.mapbox.com/mapbox-gl-js/guides/styles/ 
             https://docs.mapbox.com/api/maps/styles/  
          || cambiar estilo de mapa
+-> agregar marcador || https://docs.mapbox.com/mapbox-gl-js/example/add-a-marker/ 
+-> add popup || https://docs.mapbox.com/mapbox-gl-js/example/set-popup/
 -> 

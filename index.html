@@ -43,10 +43,13 @@
         // minZoom: 15,
         // maxZoom: 16,
       }));
+
+      const popup = new mapboxgl.Popup({ offset:25}).setText("Esta es mi casa")
       
       // add a marker to the map my home
       new mapboxgl.Marker()
         .setLngLat([-77.283837,1.214842])
+        .setPopup(popup)
         .addTo(map);
 
       map.on("style.load", () => {
