@@ -36,9 +36,9 @@
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         center: [-77.283848,1.214840],
-        zoom: 15.27,
-        pitch: 42,
-        bearing: -50,
+        zoom: 7.27,
+        pitch: 22,
+        bearing: -10,
         style: "mapbox://styles/mapbox/dark-v11",
         // minZoom: 15,
         // maxZoom: 16,
@@ -170,7 +170,7 @@
         map.setFog({});
         map.addSource('rural', {
           type: 'geojson',
-          data: 'datos/muni.geojson',
+          data: 'datos/narinio.geojson',
         });
 
         map.addLayer({
@@ -179,7 +179,16 @@
           source: 'rural',
           paint: {
             'fill-color': 'orange',
-            'fill-opacity': 0.5
+            'fill-opacity': 0.2
+          }
+        });
+
+        map.addLayer({
+          id: 'rural-id-line',
+          type: 'line',
+          source: 'rural',
+          paint: {
+            'line-color': 'white',
           }
         });
       })
