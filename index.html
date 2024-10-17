@@ -32,7 +32,7 @@
       // ADD YOUR ACCESS TOKEN FROM
       // https://account.mapbox.com
       mapboxgl.accessToken =
-        "pk.eyJ1Ijoic2F0YXJhMjM1OCIsImEiOiJjbTJiMnEwZTkwMTJnMmtvZjRkamgxdnVvIn0.ImPzr4R2dvBBLe9dZzHw7Q_154";
+        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw_154";
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         center: [-77.283848,1.214840],
@@ -165,6 +165,24 @@
           },
         });
       });
+
+      map.on('load', () => {
+        map.setFog({});
+        map.addSource('rural', {
+          type: 'geojson',
+          data: 'datos/muni.geojson',
+        });
+
+        map.addLayer({
+          id: 'rural-id',
+          type: 'fill',
+          source: 'rural',
+          paint: {
+            'fill-color': 'orange',
+            'fill-opacity': 0.5
+          }
+        });
+      })
     </script>
   </body>
 </html>

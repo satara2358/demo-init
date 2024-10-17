@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "pipeline-line",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "NAME": "Sudbury Aqueduct", "NAME_EN": null, "SUBSTANCE": "water", "LOCATION": "underground", "OPERATOR": "MWRA", "DIAMETER": null, "PRESSURE": null, "CAPACITY": null, "OSM_TYPE": "way", "OSM_ID": 671168972 }, "geometry": { "type": "LineString", "coordinates": [ [ -71.158991128471143, 42.332309433778221 ], [ -71.1584948, 42.3321572 ], [ -71.1579484, 42.3317883 ], [ -71.1574254, 42.3316813 ], [ -71.1570845, 42.3316986 ], [ -71.1565829, 42.3318281 ], [ -71.1555077, 42.3323884 ], [ -71.1551071, 42.3326549 ], [ -71.1547497, 42.3330512 ], [ -71.1545556, 42.3333564 ], [ -71.1541397, 42.3344064 ], [ -71.153924, 42.3349895 ], [ -71.1538716, 42.3354541 ], [ -71.1539586, 42.335815 ], [ -71.1540325, 42.3358021 ], [ -71.1540944, 42.3357964 ] ] } },
+{ "type": "Feature", "properties": { "NAME": null, "NAME_EN": null, "SUBSTANCE": null, "LOCATION": null, "OPERATOR": null, "DIAMETER": null, "PRESSURE": null, "CAPACITY": null, "OSM_TYPE": "way", "OSM_ID": 1314014932 }, "geometry": { "type": "LineString", "coordinates": [ [ -71.0650643, 42.2707909 ], [ -71.065190813920452, 42.270748728693185 ] ] } }
+]
+}
