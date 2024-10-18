@@ -32,11 +32,11 @@
       // ADD YOUR ACCESS TOKEN FROM
       // https://account.mapbox.com
       mapboxgl.accessToken =
-        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw_154";
+        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw";
       const map = (window.map = new mapboxgl.Map({
         container: "map",
-        center: [-77.283848,1.214840],
-        zoom: 7.27,
+        center: [-77.283848, 1.21484],
+        zoom: 9.27,
         pitch: 22,
         bearing: -10,
         style: "mapbox://styles/mapbox/dark-v11",
@@ -48,34 +48,34 @@
         {
           name: "Casa",
           color: "#f85149",
-          lngLat: [-77.283837,1.214842]
+          lngLat: [-77.283837, 1.214842],
         },
         {
           name: "RumiPamba",
           color: "#cca700",
-          lngLat: [-77.281415,1.216642]
+          lngLat: [-77.281415, 1.216642],
         },
         {
           name: "Universidad",
           color: "#da70d6",
-          lngLat: [-77.279023,1.217929]
-        }
-      ]
+          lngLat: [-77.279023, 1.217929],
+        },
+      ];
 
-      sitios.forEach(({name, lngLat, color}) => {
-        const popup = new mapboxgl.Popup({ offset:25}).setText(name)
+      sitios.forEach(({ name, lngLat, color }) => {
+        const popup = new mapboxgl.Popup({ offset: 25 }).setText(name);
 
         new mapboxgl.Marker({
-          color:color,
-          scale: 0.6
+          color: color,
+          scale: 0.6,
         })
           .setLngLat(lngLat)
-          .setPopup(popup)  
+          .setPopup(popup)
           .addTo(map);
-      })
+      });
 
       // const popup = new mapboxgl.Popup({ offset:25}).setText("Esta es mi casa")
-      
+
       // // add a marker to the map my home
       // new mapboxgl.Marker({
       //   color: '#57fa7d',
@@ -166,32 +166,55 @@
         });
       });
 
-      map.on('load', () => {
+      // map.on('load', () => {
+      //   map.setFog({});
+      //   map.addSource('rural', {
+      //     type: 'geojson',
+      //     data: 'datos/geoquimico.geojson',
+      //   });
+
+      //   map.addLayer({
+      //     id: 'rural-id',
+      //     type: 'fill',
+      //     source: 'rural',
+      //     paint: {
+      //       'fill-color': 'orange',
+      //       'fill-opacity': 0.2
+      //     }
+      //   });
+
+      // })
+
+      map.on("load", () => {
         map.setFog({});
-        map.addSource('rural', {
-          type: 'geojson',
-          data: 'datos/narinio.geojson',
+        map.addSource("pasto", {
+          type: "geojson",
+          data: "datos/nari-past.geojson",
         });
-
         map.addLayer({
-          id: 'rural-id',
-          type: 'fill',
-          source: 'rural',
+          id: "rural-id",
+          type: "fill",
+          source: "pasto",
           paint: {
-            'fill-color': 'orange',
-            'fill-opacity': 0.2
-          }
+            // 'fill-color': 'green',
+            // 'fill-opacity': 0.3
+            "fill-color": [
+              "case",
+              ["==", ["get", "DPT"], "NARIÑO"],
+              "green",
+              ["==", ["get", "MUNI"], "PASTO"],
+              "red", 
+              "steelblue",
+            ],
+            "fill-opacity": [
+              "case",
+              ["==", ["get", "DPT"], "NARIÑO"],0.2,
+              ["==", ["get", "MUNI"], "PASTO"],0.3,
+              0.7 // por defecto para otros numerales
+            ]
+          },
         });
-
-        map.addLayer({
-          id: 'rural-id-line',
-          type: 'line',
-          source: 'rural',
-          paint: {
-            'line-color': 'white',
-          }
-        });
-      })
+      });
     </script>
   </body>
 </html>
