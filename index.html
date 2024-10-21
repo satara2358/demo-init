@@ -32,12 +32,12 @@
       // ADD YOUR ACCESS TOKEN FROM
       // https://account.mapbox.com
       mapboxgl.accessToken =
-        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw";
+        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw_154";
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         center: [-77.283848, 1.21484],
-        zoom: 9.27,
-        pitch: 22,
+        zoom: 8.27,
+        pitch: 52,
         bearing: -10,
         style: "mapbox://styles/mapbox/dark-v11",
         // minZoom: 15,
@@ -163,7 +163,7 @@
             "model-cast-shadows": true,
             "model-emissive-strength": 0.8,
           },
-        });
+        }, 'road-label');
       });
 
       // map.on('load', () => {
@@ -203,17 +203,32 @@
               ["==", ["get", "DPT"], "NARIÑO"],
               "green",
               ["==", ["get", "MUNI"], "PASTO"],
-              "red", 
+              "red",
               "steelblue",
             ],
             "fill-opacity": [
               "case",
-              ["==", ["get", "DPT"], "NARIÑO"],0.2,
-              ["==", ["get", "MUNI"], "PASTO"],0.3,
-              0.7 // por defecto para otros numerales
-            ]
+              ["==", ["get", "DPT"], "NARIÑO"],
+              0.2,
+              ["==", ["get", "MUNI"], "PASTO"],
+              0.3,
+              0.7, // por defecto para otros numerales
+            ],
           },
         });
+
+        map.on("click", (e)=> {
+          // console.log("click", e.point);
+
+          const [features] = map.queryRenderedFeatures(e.point, {
+            layers: ["pasto"],
+          });
+
+          if (features){
+            const { MUNI, DPT } = features.properties;
+            alert(`Esto es ${MUNI}, y esto es ${DPT}`);
+          }          
+        })
       });
     </script>
   </body>
