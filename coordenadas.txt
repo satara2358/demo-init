@@ -8,4 +8,4 @@
 -> datos de geolocalizacion || https://geojson.io/#map=2/0/20
 -> datos || https://srvags.sgc.gov.co/jsviewer/Mapa_de_Anomalias_Geofisicas_de_Colombia_2022/
 -> https://docs.mapbox.com/mapbox-gl-js/example/flyto/
--> 
+-> https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/

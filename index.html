@@ -12,6 +12,13 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+
     <style>
       html,
       body {
@@ -58,7 +65,7 @@
       const INITIAL_ZOOM = 8.27;
 
       mapboxgl.accessToken =
-        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw";
+        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw_154";
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         center: INITIAL_CENTER,
@@ -69,6 +76,13 @@
         // minZoom: 15,
         // maxZoom: 16,
       }));
+
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+        })
+      );
 
       const sitios = [
         {
