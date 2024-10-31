@@ -34,12 +34,18 @@
         height: 100%;
         padding: 22px;
       }
+      button {
+        display: block;
+        margin-top: 15px;
+      }
     </style>
   </head>
   <body>
     <div id="container">
       <div id="Sidebar">
         <button id="fly-to-one">IR A CASA</button>
+        <button id="volar">VOLAR</button>
+        <button id="reset-view">Volver</button>
       </div>
       <div id="map"></div>
     </div>
@@ -47,12 +53,16 @@
       // TO MAKE THE MAP APPEAR YOU MUST
       // ADD YOUR ACCESS TOKEN FROM
       // https://account.mapbox.com
+
+      const INITIAL_CENTER = [-77.283848, 1.21484];
+      const INITIAL_ZOOM = 8.27;
+
       mapboxgl.accessToken =
         "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw";
       const map = (window.map = new mapboxgl.Map({
         container: "map",
-        center: [-77.283848, 1.21484],
-        zoom: 8.27,
+        center: INITIAL_CENTER,
+        zoom: INITIAL_ZOOM,
         pitch: 52,
         bearing: -10,
         style: "mapbox://styles/mapbox/dark-v11",
@@ -250,13 +260,28 @@
         });
       });
       // Ir a casa
-      document.querySelector('#fly-to-one').addEventListener('click', () => {
+      document.querySelector("#fly-to-one").addEventListener("click", () => {
         map.flyTo({
-          center: [-77.283864,1.214850],
+          center: [-77.283864, 1.21485],
           zoom: 18.27,
+          pitch: 55,
         });
       });
-
+      // Volver a la zona
+      document.querySelector("#reset-view").addEventListener("click", () => {
+        map.flyTo({
+          center: INITIAL_CENTER,
+          zoom: INITIAL_ZOOM,
+          pitch: 0,
+        });
+      });
+      // Volar
+      document.querySelector("#volar").addEventListener("click", () => {
+        map.fitBounds([
+          [-77.279023, 1.217929],
+          [-77.279023, 1.217929],
+        ]);
+      });
     </script>
   </body>
 </html>
