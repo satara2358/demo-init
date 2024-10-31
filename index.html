@@ -13,26 +13,42 @@
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
     <style>
+      html,
       body {
         margin: 0;
         padding: 0;
+        height: 100%;
       }
       #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
+        height: 100%;
         width: 100%;
+        flex-grow: 1;
+      }
+      #container {
+        display: flex;
+        height: 100%;
+      }
+      #Sidebar {
+        width: 280px;
+        flex-shrink: 0;
+        height: 100%;
+        padding: 22px;
       }
     </style>
   </head>
   <body>
-    <div id="map"></div>
+    <div id="container">
+      <div id="Sidebar">
+        <button id="fly-to-one">IR A CASA</button>
+      </div>
+      <div id="map"></div>
+    </div>
     <script>
       // TO MAKE THE MAP APPEAR YOU MUST
       // ADD YOUR ACCESS TOKEN FROM
       // https://account.mapbox.com
       mapboxgl.accessToken =
-        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw_154";
+        "pk.eyJ1IjoicnRhZGV3YWxkIiwiYSI6ImNrbzRlcWQ3MzA1YTcyd3F2dHVqdDI2Y28ifQ.t23V1hNk2rjTBcMMQ9iVZw";
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         center: [-77.283848, 1.21484],
@@ -146,24 +162,27 @@
         });
 
         // add the model layer and specify the appropriate `slot` to ensure the symbols are rendered correctly.
-        map.addLayer({
-          id: "tower",
-          type: "model",
-          slot: "middle",
-          source: "model",
-          minzoom: 15,
-          layout: {
-            "model-id": ["get", "model-uri"],
+        map.addLayer(
+          {
+            id: "tower",
+            type: "model",
+            slot: "middle",
+            source: "model",
+            minzoom: 15,
+            layout: {
+              "model-id": ["get", "model-uri"],
+            },
+            paint: {
+              "model-opacity": 1,
+              "model-rotation": [0.0, 0.0, 35.0],
+              "model-scale": [0.8, 0.8, 1.2],
+              "model-color-mix-intensity": 0,
+              "model-cast-shadows": true,
+              "model-emissive-strength": 0.8,
+            },
           },
-          paint: {
-            "model-opacity": 1,
-            "model-rotation": [0.0, 0.0, 35.0],
-            "model-scale": [0.8, 0.8, 1.2],
-            "model-color-mix-intensity": 0,
-            "model-cast-shadows": true,
-            "model-emissive-strength": 0.8,
-          },
-        }, 'road-label');
+          "road-label"
+        );
       });
 
       // map.on('load', () => {
@@ -217,19 +236,27 @@
           },
         });
 
-        map.on("click", (e)=> {
+        map.on("click", (e) => {
           // console.log("click", e.point);
 
           const [features] = map.queryRenderedFeatures(e.point, {
             layers: ["pasto"],
           });
 
-          if (features){
+          if (features) {
             const { MUNI, DPT } = features.properties;
             alert(`Esto es ${MUNI}, y esto es ${DPT}`);
-          }          
-        })
+          }
+        });
       });
+      // Ir a casa
+      document.querySelector('#fly-to-one').addEventListener('click', () => {
+        map.flyTo({
+          center: [-77.283864,1.214850],
+          zoom: 18.27,
+        });
+      });
+
     </script>
   </body>
 </html>
