@@ -1,4 +1,8 @@
 -> http://bboxfinder.com/#0.000000,0.000000,0.000000,0.000000 
+-> API || https://account.mapbox.com/
+-> Ejemplos de uso || https://docs.mapbox.com/mapbox-gl-js/example/
+-> uso example || https://docs.mapbox.com/mapbox-gl-js/example/clip-layer-building/
+
 -> desde || https://docs.mapbox.com/mapbox-gl-js/guides/styles/ 
             https://docs.mapbox.com/api/maps/styles/  
          || cambiar estilo de mapa
